@@ -1,0 +1,27 @@
+options(font=c("-adobe-helvetica-%s-%s-*-*-%d-*-*-*-*-*-iso8859-2","-adobe-symbol-*-*-*-*-%d-*-*-*-*-*-iso8859-2"))
+popisky<-c(1, 2, );
+legenda<-c('5 - èerstvé, bohaté','6 - nitrofilní','7 - velmi chudé','8 - suché, chudé','9 - mírnì vlhké, chudé','10 - èerstvé, stø. bohaté','11 - støídavì vlhké','13 - vlhké, bohaté','16 - rašelinné',);
+barvy<-c('RoyalBlue','LawnGreen','khaki1','Yellow','Gold1','Navy','violetred4','Aquamarine2','gray20',);
+
+png('C:/Documents and Settings/jachym/Dokumenty/Programms/5S1.png',width=550,height=335,);
+
+   
+b<-barplot(as.matrix(read.table('rdata.txt')),
+    beside=F,axisnames=F,
+    main='LT 5S1 - ekologické spektrum synuzie podrostu',
+    font.main=2,
+    cex.main=0.8,
+    names.arg=popisky,
+    ylim=c(-5,85),xlim=c(0,100),
+    horiz=T,width=c(15),
+    col=barvy,
+    space=c(4.1,0.2,),axes=F,cex.names=0.75)
+
+a<-axis(1,labels=F,tick=T,line=5,pos=60,outer=F,cex.axis=0.7,)
+text(y=50,x=c(20,40,60,80,),labels=c('20%','40%','60%','80%',),cex=0.7,);
+text(y=50,x=0,labels='0%',cex=0.7,adj=0);
+text(y=50,x=100,labels='100%',cex=0.7,adj=1);
+text(b, labels = popisky, srt = 0, , pos=2,offset=1, xpd = TRUE,cex=0.60)
+
+legend(-0,50,legenda,col=barvy,ncol=3,cex=0.65,xjust=0.,text.width=27,trace=T,bty=c("n"),fill=barvy,adj=0)
+dev.off(2)
